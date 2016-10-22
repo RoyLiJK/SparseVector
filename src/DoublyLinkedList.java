@@ -86,13 +86,9 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       if (index == 0)
       {
           // New element goes at beginning
-          Node<AnyType> p = header;            // Old first
-          header = new Node<AnyType>(newValue, p, null);
-          if (p != null)
-              p.prev = header;             
-          if (trailer == null)
-        	  trailer = header;
-          
+          Node<AnyType> p  = new Node<AnyType>(newValue, header, trailer);            // Old first
+          header.setNext(p);
+          trailer.setPrev(p);
       }
       else
       {
@@ -138,33 +134,22 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       if (index == 0)
       {
           // New element goes at beginning
-          Node<AnyType> p = header;            // Old first
-          header = new Node<AnyType>(newValue, p, null);
-          if (p != null)
-              p.prev = header;             
-          if (trailer == null)
-        	  trailer = header;
-          
+          header = new Node<AnyType>(newValue, null, null);
+          header.setNext(header);
+          header.setPrev(header);
+          trailer = header;
       }
-      else
+      else   if (index == 1)
       {
-			
-          Node<AnyType> pred = header;       
-          for (int k = 1; k <= index - 1; k++)        
-          {
-             pred = pred.next;           
-          }
-          
-          // Splice in a node with the new element
-          // We want to go from  pred-- succ to 
-          // pred--middle--succ
-          Node<AnyType> succ = pred.next;
-          Node<AnyType> middle = new Node<AnyType>(newValue, succ, pred);
-          pred.next = middle;  
-          if (succ == null)             
-        	  trailer = middle;       
-          else            
-              succ.prev = middle;
+          // New element goes at beginning
+    	  trailer = new Node<AnyType>(newValue, header, header);
+          header.setNext(trailer);
+          header.setPrev(trailer);
+      } else 
+      {
+    	  Node<AnyType> old = 	trailer;
+    	  trailer = new Node<AnyType>(newValue, old, header);
+    	  old.setNext(trailer);
       }
       theSize ++;
       
@@ -187,11 +172,13 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 
   private Node<AnyType> getNode(int index, int lower, int upper) // Write code here to implement this method.
   {
+	  if (index > upper){
+		  return null;
+	  }
 	  Node<AnyType> currentNode = header;
-	  for( int i = lower; i< upper; i++)
+	  for( int i = lower; i<=index; i++)
 	  {
 		  currentNode = currentNode.getNext();
-		  
 	  }
 	  return currentNode;
   }
@@ -203,6 +190,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 		  return null;
 	  }
      
+	  
       // Locate the node targeted for removal
       Node<AnyType> target = header;  
       for(int i = 0; i<size();i++)
@@ -216,18 +204,10 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
    
       Node<AnyType> pred = target.prev;        // Node before the target
       Node<AnyType> succ = target.next;        // Node after the target
-      
       // Route forward and back pointers around
       // the node to be removed
-      if (pred == null)       
-    	  header = succ;
-      else
           pred.next = succ;
-      
-      if (succ == null)
-    	  trailer = pred;
-      else
-          succ.prev = pred;
+         succ.prev = pred;
       theSize--;
 	return target.getData();      
    

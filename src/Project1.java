@@ -14,11 +14,10 @@ public class Project1 {
 		
 		for (int i =0; i<a.size();i++){
 			System.out.println(a.get(i));
-
 		}
 		System.out.println("-----------------------");
 		int k = a.size();
-		for (int i =0; i<k;i++){
+		for (int i =1; i<2;i++){
 			a.remove(i);
 
 		}
