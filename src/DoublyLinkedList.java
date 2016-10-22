@@ -71,12 +71,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
     	p = p.getNext();
     	
     }
-	  	  
-<<<<<<< HEAD
-    	return  (AnyType) p.getData();
-=======
     	return  p.getData();
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
   }
 
   public  AnyType set(int index, AnyType newValue) // Write code here to implement this method.
@@ -149,16 +144,10 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
               p.prev = header;             
           if (trailer == null)
         	  trailer = header;
-<<<<<<< HEAD
-      } else {
-          // pred will point to the predecessor of the new node.
-=======
           
       }
       else
       {
-      // pred will point to the predecessor of the new node.
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
 			
           Node<AnyType> pred = header;       
           for (int k = 1; k <= index - 1; k++)        
@@ -179,22 +168,6 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       }
       theSize ++;
       
-<<<<<<< HEAD
-=======
-      // Splice in a node with the new element
-      // We want to go from  pred-- succ to 
-      // pred--middle--succ
-      Node<AnyType> succ = pred.next;
-      Node<AnyType> middle = new Node<AnyType>(newValue, succ, pred);
-      pred.next = middle;  
-      if (succ == null)             
-    	  trailer = middle;       
-      else            
-          succ.prev = middle;  
-      }
-      
-      theSize++;
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
  }
 
   public AnyType remove(int index)
@@ -225,24 +198,13 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 
   private AnyType remove(Node<AnyType> currNode) // Write code here to implement this method.
   {
-<<<<<<< HEAD
-	  if (isEmpty()){
-=======
 	  if(isEmpty())
 	  {
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
 		  return null;
 	  }
      
       // Locate the node targeted for removal
       Node<AnyType> target = header;  
-<<<<<<< HEAD
-      for (int i=0;i<size();i++){
-          target = target.next;
-          if (target!=null&&target.equals(currNode)){
-        	  break;
-          }
-=======
       for(int i = 0; i<size();i++)
       {
     	  target = target.next;
@@ -250,7 +212,6 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
     	  {
     		  break;
     	  }
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
       }
    
       Node<AnyType> pred = target.prev;        // Node before the target
@@ -267,10 +228,6 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
     	  trailer = pred;
       else
           succ.prev = pred;
-<<<<<<< HEAD
-=======
-      
->>>>>>> branch 'master' of https://github.com/RoyLiJK/SparseVector.git
       theSize--;
 	return target.getData();      
    
