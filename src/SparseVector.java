@@ -1,5 +1,5 @@
 
-
+/*
 public class SparseVector<AnyType> 
 {
 
@@ -13,14 +13,8 @@ public class SparseVector<AnyType>
 	public SparseVector add(SparseVector sv)
 	{
 		// returns a SparseVector which is A+B.
-		SparseVector result;
-		if(this.vector != null && sv != null)
-		{
-			for(int i = 0; i< vector.size();i++)
-			{
-				result = vector.get(i) + sv.get(i);
-			}
-		}
+		SparseVector result = new SparseVector();;
+		//iterator??
 		return result;
 	}
 	
@@ -45,4 +39,4 @@ public class SparseVector<AnyType>
 	}
 	 
 	 
-}
+}*/

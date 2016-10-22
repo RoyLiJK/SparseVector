@@ -64,13 +64,14 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 
   public AnyType get(int index) // Write code here to implement this method.
   {
-	  Node p = header;
-    for(int i = 0; i< index; i++)
+	  Node<AnyType> p = header;
+	  
+   for(int i = 0; i < index - 1; i++)
     {
-    	p =p.getNext();
-    	  
+    	p = p.getNext();
     }
-    	return (AnyType) p;
+	  	  
+    	return  (AnyType) p;
   }
 
   public  AnyType set(int index, AnyType newValue) // Write code here to implement this method.
@@ -85,8 +86,8 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       if (index == 0)
       {
           // New element goes at beginning
-          Node p = header;            // Old first
-          header = new Node(newValue, p, null);
+          Node<AnyType> p = header;            // Old first
+          header = new Node<AnyType>(newValue, p, null);
           if (p != null)
               p.prev = header;             
           if (trailer == null)
@@ -96,7 +97,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       
       // pred will point to the predecessor of the new node.
 			
-      Node pred = header;       
+      Node<AnyType> pred = header;       
       for (int k = 1; k <= index - 1; k++)        
       {
          pred = pred.next;           
@@ -105,8 +106,8 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       // Splice in a node with the new element
       // We want to go from  pred-- succ to 
       // pred--middle--succ
-      Node succ = pred.next;
-      Node middle = new Node(newValue, succ, pred);
+      Node<AnyType> succ = pred.next;
+      Node<AnyType> middle = new Node<AnyType>(newValue, succ, pred);
       pred.next = middle;  
       if (succ == null)             
     	  trailer = middle;       
@@ -133,8 +134,8 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       if (index == 0)
       {
           // New element goes at beginning
-          Node p = header;            // Old first
-          header = new Node(newValue, p, null);
+          Node<AnyType> p = header;            // Old first
+          header = new Node<AnyType>(newValue, p, null);
           if (p != null)
               p.prev = header;             
           if (trailer == null)
@@ -144,7 +145,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       
       // pred will point to the predecessor of the new node.
 			
-      Node pred = header;       
+      Node<AnyType> pred = header;       
       for (int k = 1; k <= index - 1; k++)        
       {
          pred = pred.next;           
@@ -153,8 +154,8 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       // Splice in a node with the new element
       // We want to go from  pred-- succ to 
       // pred--middle--succ
-      Node succ = pred.next;
-      Node middle = new Node(newValue, succ, pred);
+      Node<AnyType> succ = pred.next;
+      Node<AnyType> middle = new Node<AnyType>(newValue, succ, pred);
       pred.next = middle;  
       if (succ == null)             
     	  trailer = middle;       
@@ -179,7 +180,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 
   private Node<AnyType> getNode(int index, int lower, int upper) // Write code here to implement this method.
   {
-	  Node currentNode = header;
+	  Node<AnyType> currentNode = header;
 	  for( int i = lower; i< upper; i++)
 	  {
 		  currentNode = currentNode.getNext();
@@ -193,12 +194,12 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 	  isEmpty();
      
       // Locate the node targeted for removal
-      Node target = header;  
+      Node<AnyType> target = header;  
       while (target != null  && !currNode.equals(target.data))
           target = target.next;
    
-      Node pred = target.prev;        // Node before the target
-      Node succ = target.next;        // Node after the target
+      Node<AnyType> pred = target.prev;        // Node before the target
+      Node<AnyType> succ = target.next;        // Node after the target
       
       // Route forward and back pointers around
       // the node to be removed
