@@ -11,10 +11,19 @@ public class Project1 {
 		a.add(6.0);
 		a.add(6.0);
 		
-	
-			System.out.println(a.get(0));
-		
-		
+		for (int i =0; i<a.size();i++){
+			System.out.println(a.get(i));
+
+		}
+		System.out.println("-----------------------");
+		int k = a.size();
+		for (int i =0; i<k;i++){
+			a.remove(i);
+
+		}
+		for (int i =0; i<a.size();i++){
+			System.out.println(a.get(i));
+		}
 	}
 
 }
