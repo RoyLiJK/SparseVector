@@ -209,14 +209,14 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 				header = header.getNext();
 				trailer.setNext(header);
 				retVal = old.getData();
-			}
+			} else
 
 			if (currNode.equals(trailer)) {
 				Node<AnyType> old = trailer;
 				trailer = trailer.getPrev();
 				header.setPrev(trailer);
 				retVal = old.getData();
-			}
+			}else{
 
 			// Locate the node targeted for removal
 			Node<AnyType> target = header;
@@ -233,7 +233,7 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 			// the node to be removed
 			pred.next = succ;
 			succ.prev = pred;
-			retVal = target.getData();
+			retVal = target.getData();}
 		}
 		theSize--;
 		return retVal;
