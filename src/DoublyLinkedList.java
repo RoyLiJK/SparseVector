@@ -66,12 +66,13 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
   {
 	  Node<AnyType> p = header;
 	  
-   for(int i = 0; i < index - 1; i++)
+   for(int i = 0; i < index ; i++)
     {
     	p = p.getNext();
+    	
     }
 	  	  
-    	return  (AnyType) p;
+    	return  p.getData();
   }
 
   public  AnyType set(int index, AnyType newValue) // Write code here to implement this method.
@@ -94,7 +95,8 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
         	  trailer = header;
           
       }
-      
+      else
+      {
       // pred will point to the predecessor of the new node.
 			
       Node<AnyType> pred = header;       
@@ -113,7 +115,10 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
     	  trailer = middle;       
       else            
           succ.prev = middle;
-	return newValue;  
+      }
+      
+	return newValue;
+	
   }
 
   public boolean add(AnyType newValue)
@@ -140,9 +145,10 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
               p.prev = header;             
           if (trailer == null)
         	  trailer = header;
-          return;
+          
       }
-      
+      else
+      {
       // pred will point to the predecessor of the new node.
 			
       Node<AnyType> pred = header;       
@@ -160,7 +166,10 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
       if (succ == null)             
     	  trailer = middle;       
       else            
-          succ.prev = middle;                     
+          succ.prev = middle;  
+      }
+      
+      theSize++;
  }
 
   public AnyType remove(int index)
@@ -191,12 +200,21 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
 
   private AnyType remove(Node<AnyType> currNode) // Write code here to implement this method.
   {
-	  isEmpty();
+	  if(isEmpty())
+	  {
+		  return null;
+	  }
      
       // Locate the node targeted for removal
       Node<AnyType> target = header;  
-      while (target != null  && !currNode.equals(target.data))
-          target = target.next;
+      for(int i = 0; i<size();i++)
+      {
+    	  target = target.next;
+    	  if(target != null && target.equals(currNode))
+    	  {
+    		  break;
+    	  }
+      }
    
       Node<AnyType> pred = target.prev;        // Node before the target
       Node<AnyType> succ = target.next;        // Node after the target
@@ -212,9 +230,11 @@ public class DoublyLinkedList<AnyType> implements List<AnyType>
     	  trailer = pred;
       else
           succ.prev = pred;
-	return (AnyType) target;      
+      
+      theSize--;
+	return target.getData();      
    
- 
+	
    
   }
 

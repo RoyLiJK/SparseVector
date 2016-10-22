@@ -8,13 +8,14 @@ public class Project1 {
 		a.add(3.0);
 		a.add(4.0);
 		a.add(5.0);
+		a.add(8.0);
 		a.add(6.0);
-		a.add(6.0);
-		
+		//a.set(0, 9.0);
+		a.remove(0);
 	
 			System.out.println(a.get(0));
 		
-		
+				
 	}
 
 }
