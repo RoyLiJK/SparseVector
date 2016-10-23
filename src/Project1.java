@@ -23,12 +23,20 @@ public class Project1 {
 //			System.out.println(a.get(i));
 //		}
 //		
-		SparseVector<Integer> sv1 = new SparseVector<>();
+		SparseVector sv1 = new SparseVector();
 		
-		sv1.add(1,2131);
-		sv1.add(88,232);
-		sv1.add(654,3456);
+		sv1.add(1,2131.0);
+		sv1.add(88,232.0);
+		sv1.add(654,3456.0);
 		System.out.println(sv1);
+		
+		SparseVector sv2 = new SparseVector();
+		sv2.add(1,331.0);
+		sv2.add(654,336.0);
+		sv2.add(2312,222.0);
+		sv2.add(632124,33256.0);
+		System.out.println(sv2);
+		System.out.println(sv1.add(sv2));
 	}
 
 }

@@ -1,22 +1,42 @@
+import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class SparseVector<AnyType> 
+public class SparseVector
 {
 
-	private DoublyLinkedList<AnyType> vector = new DoublyLinkedList<AnyType>();
+	private DoublyLinkedList<Double> vector = new DoublyLinkedList<Double>();
 	
 	private TreeMap<Integer, Integer> indexs = new TreeMap<>();
 	
 	public SparseVector()
 	{
-		this.vector = new DoublyLinkedList<AnyType>();
+		this.vector = new DoublyLinkedList<Double>();
 	}
 	
-	public void add(int index, AnyType sv)
+	public void add(int index, Double sv)
 	{
-		indexs.put(index, vector.size());
-		vector.add(sv);
+		if (indexs.get(index)==null){
+			indexs.put(index, vector.size());
+			vector.add(sv);
+		} else {
+			vector.set(indexs.get(index), sv);
+		}
+	}
+	
+	
+	
+	public Double get(int index){
+		Integer ind =indexs.get(index); 
+		if (ind != null){
+			return vector.get(ind);
+		} else {
+			return null;
+		}
+	}
+	
+	public Iterator<Integer> getIterator(){
+		return indexs.keySet().iterator();
 	}
 	
 	public SparseVector add(SparseVector sv)
@@ -24,6 +44,25 @@ public class SparseVector<AnyType>
 		// returns a SparseVector which is A+B.
 		SparseVector result = new SparseVector();
 		//iterator??
+		Iterator<Integer> itr1 = getIterator();
+		Iterator<Integer> itr2 = sv.getIterator();
+		
+		TreeMap<Integer, Double> sum = new TreeMap<>();
+		while (itr1.hasNext()){
+			int ind = itr1.next();
+			sum.put(ind, get(ind));
+		}
+		while (itr2.hasNext()){
+			int ind = itr2.next();
+			if (sum.get(ind)==null){
+				sum.put(ind, sv.get(ind));
+			} else {
+				sum.put(ind, sum.get(ind)+sv.get(ind));
+			}
+		}
+		for (Integer ind : sum.keySet()){
+			result.add(ind, sum.get(ind));
+		}
 		return result;
 	}
 //	
