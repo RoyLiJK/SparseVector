@@ -1,8 +1,11 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Project1 {
 
-	public static void main(String[] args)
+	public static void main(String[] args) 
 	{
 //		DoublyLinkedList<Double> a = new DoublyLinkedList<Double>();
 //		a.add(3.0);
@@ -22,21 +25,50 @@ public class Project1 {
 //		for (int i =0; i<a.size();i++){
 //			System.out.println(a.get(i));
 //		}
-//		
-		SparseVector sv1 = new SparseVector();
 		
-		sv1.add(1,2131.0);
-		sv1.add(88,232.0);
-		sv1.add(654,3456.0);
+		/*SparseVector sv1 = new SparseVector();
+		
+		sv1.add(1,1.0);
+		sv1.add(2,2.0);
+		sv1.add(3,-3.0);
+		sv1.add(4,4.0);
+		
 		System.out.println(sv1);
 		
 		SparseVector sv2 = new SparseVector();
-		sv2.add(1,331.0);
-		sv2.add(654,336.0);
-		sv2.add(2312,222.0);
-		sv2.add(632124,33256.0);
+		sv2.add(1,1.0);
+		sv2.add(2,2.0);
+		sv2.add(3,3.0);
+		sv2.add(4,4.0);
 		System.out.println(sv2);
-		System.out.println(sv1.add(sv2));
+		System.out.println(sv1.subtract(sv2));*/
+		
+		
+			FileInputStream fstream;
+			try {
+					fstream = new FileInputStream("project1.txt");
+					int i = 0;
+					char c;
+				       		  
+		         // read till the end of the file
+		         while((i=fstream.read())!=-1)
+		         {
+		            // converts integer to character
+		            c=(char)i;
+		            
+		            // prints character
+		            System.out.print(c);
+		         }
+			 	}
+		         catch (FileNotFoundException e)
+		         	{	
+		        	 e.printStackTrace();
+		         	} 
+				catch (IOException e)
+				{			
+					e.printStackTrace();
+				}
+		
 	}
 
 }
