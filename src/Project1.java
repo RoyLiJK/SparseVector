@@ -1,6 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 
 public class Project1 {
@@ -49,7 +50,7 @@ public class Project1 {
 					fstream = new FileInputStream("project1.txt");
 					int i = 0;
 					char c;
-				       		  
+				     String s;  		  
 		         // read till the end of the file
 		         while((i=fstream.read())!=-1)
 		         {
@@ -58,6 +59,8 @@ public class Project1 {
 		            
 		            // prints character
 		            System.out.print(c);
+		            s = ParseString(i);
+		            parseSV(fstream);
 		         }
 			 	}
 		         catch (FileNotFoundException e)
@@ -71,16 +74,38 @@ public class Project1 {
 		
 	}
 	
-	private static SparseVector parseSV(String sv){
+	private static SparseVector parseSV(String sv)
+	{
 		SparseVector vector = new SparseVector();
+		Scanner scanner = new Scanner(sv).useDelimiter("\\s+");
+		double d =0.0; int i=0;
+		while (scanner.hasNext()) 
+		{
+			if (scanner.hasNextInt()) 
+		    { 
+		        i = scanner.nextInt();
+		    }
+		    if (scanner.hasNextDouble()) 
+		    { 
+		        d = scanner.nextDouble(); 
+		        
+		    } 
+		    
+		    vector.add(i, d);
+		   
+		    scanner.next(); // else read the next token
+		  }
+		
 		return vector;
 		
 	}
 	
-	private static void doVectorOperation(String sv1, String sv2, String op){
+	private static void doVectorOperation(String sv1, String sv2, String op)
+	{
 		SparseVector vector1 = parseSV(sv1);
 		SparseVector vector2 = parseSV(sv2);
-		if (op.equals("add")){
+		if (op.equals("add"))
+		{
 			vector1.add(vector2);
 		}
 		
