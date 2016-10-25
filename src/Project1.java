@@ -59,8 +59,8 @@ public class Project1 {
 		            
 		            // prints character
 		            System.out.print(c);
-		            s = ParseString(i);
-		            parseSV(fstream);
+		            String numberAsString = Integer.toString(i);
+		            parseSV(numberAsString);
 		         }
 			 	}
 		         catch (FileNotFoundException e)
