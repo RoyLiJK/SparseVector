@@ -71,6 +71,11 @@ public class Project1 {
 		
 	}
 	
+	private static SparseVector parseSV(String sv){
+		SparseVector vector = new SparseVector();
+		return vector;
+		
+	}
 	
 	private static void doVectorOperation(String sv1, String sv2, String op){
 		
