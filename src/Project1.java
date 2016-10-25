@@ -38,5 +38,11 @@ public class Project1 {
 		System.out.println(sv2);
 		System.out.println(sv1.add(sv2));
 	}
+	
+	
+	private static void doVectorOperation(String sv1, String sv2, String op){
+		
+		
+	}
 
 }
