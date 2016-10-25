@@ -78,7 +78,11 @@ public class Project1 {
 	}
 	
 	private static void doVectorOperation(String sv1, String sv2, String op){
-		
+		SparseVector vector1 = parseSV(sv1);
+		SparseVector vector2 = parseSV(sv2);
+		if (op.equals("add")){
+			vector1.add(vector2);
+		}
 		
 	}
 
