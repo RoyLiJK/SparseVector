@@ -1,6 +1,9 @@
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -45,62 +48,43 @@ public class Project1 {
 		System.out.println(sv1.subtract(sv2));*/
 		
 		
-			FileInputStream fstream;
+		BufferedReader br = null;
+
+		try {
+
+			String sCurrentLine;
+
+			br = new BufferedReader(new FileReader("project1.txt"));
+			ArrayList<String> lines = new ArrayList<>();
+
+			while ((sCurrentLine = br.readLine()) != null) {
+				lines.add(sCurrentLine);
+			}
+			doVectorOperation(lines.get(0),lines.get(1),lines.get(2));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 			try {
-					fstream = new FileInputStream("project1.txt");
-					int i = 0;
-					char c;
-				     String s;  		  
-		         // read till the end of the file
-		         while((i=fstream.read())!=-1)
-		         {
-		            // converts integer to character
-		            c=(char)i;
-		            
-		            // prints character
-		            System.out.print(c);
-		            String numberAsString = Integer.toString(i);
-		            parseSV(numberAsString);
-		         }
-			 	}
-		         catch (FileNotFoundException e)
-		         	{	
-		        	 e.printStackTrace();
-		         	} 
-				catch (IOException e)
-				{			
-					e.printStackTrace();
-				}
-		
+				if (br != null)br.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
-	
-	private static SparseVector parseSV(String sv)
-	{
+
+	private static SparseVector parseSV(String sv) throws Exception{
 		SparseVector vector = new SparseVector();
-		Scanner scanner = new Scanner(sv).useDelimiter("\\s+");
-		double d =0.0; int i=0;
-		while (scanner.hasNext()) 
-		{
-			if (scanner.hasNextInt()) 
-		    { 
-		        i = scanner.nextInt();
-		    }
-		    if (scanner.hasNextDouble()) 
-		    { 
-		        d = scanner.nextDouble(); 
-		        
-		    } 
-		    
-		    vector.add(i, d);
-		   
-		    scanner.next(); // else read the next token
-		  }
-		
+			String[] vals = sv.split(" ");
+			for (int i = 0; i < vals.length - 1; i += 2) {
+				vector.add(Integer.parseInt(vals[i]), Double.parseDouble(vals[i + 1]));
+			}
+			System.out.println(vector);
 		return vector;
-		
+
 	}
-	
-	private static void doVectorOperation(String sv1, String sv2, String op)
+
+	private static void doVectorOperation(String sv1, String sv2, String op)throws Exception
 	{
 		SparseVector vector1 = parseSV(sv1);
 		SparseVector vector2 = parseSV(sv2);
