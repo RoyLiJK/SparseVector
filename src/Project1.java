@@ -60,7 +60,9 @@ public class Project1 {
 			while ((sCurrentLine = br.readLine()) != null) {
 				lines.add(sCurrentLine);
 			}
-			doVectorOperation(lines.get(0),lines.get(1),lines.get(2));
+			for (int i = 0; i<lines.size()-3;i+=3){
+				new VectorOp(lines.get(i),lines.get(i+1),lines.get(i+2)).doVectorOperation();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,25 +75,5 @@ public class Project1 {
 		}
 	}
 
-	private static SparseVector parseSV(String sv) throws Exception{
-		SparseVector vector = new SparseVector();
-			String[] vals = sv.split(" ");
-			for (int i = 0; i < vals.length - 1; i += 2) {
-				vector.add(Integer.parseInt(vals[i]), Double.parseDouble(vals[i + 1]));
-			}
-			System.out.println(vector);
-		return vector;
-
-	}
-
-	private static void doVectorOperation(String sv1, String sv2, String op)throws Exception
-	{
-		SparseVector vector1 = parseSV(sv1);
-		SparseVector vector2 = parseSV(sv2);
-		if (op.equals("add"))
-		{
-			System.out.println(vector1.add(vector2));
-		}
-	}
 
 }
