@@ -112,7 +112,12 @@ public class SparseVector
 			}
 			else 
 			{
-				sum.put(ind, sum.get(ind)-sv.get(ind));
+				double sumVal = sum.get(ind)-sv.get(ind);
+				if (sumVal==0){
+					sum.remove(ind);
+				} else {
+					sum.put(ind, sumVal);
+				}
 			}
 		}
 		

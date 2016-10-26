@@ -21,12 +21,19 @@ public class VectorOp {
 
 	}
 
-	public void doVectorOperation() throws Exception {
+	public String doVectorOperation() throws Exception {
 		SparseVector vector1 = parseSV(getVector1());
 		SparseVector vector2 = parseSV(getVector2());
 		if (getOp().equals("add")) {
-			System.out.println(vector1.add(vector2));
+			 return vector1.add(vector2).toString();
 		}
+		if (getOp().equals("subtract")) {
+			return vector1.subtract(vector2).toString();
+		}
+		if (getOp().equals("dot")) {
+			return vector1.dot(vector2)+"";
+		}
+		return "invalid op";
 	}
 
 	public String getVector1() {

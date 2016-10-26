@@ -28,10 +28,10 @@ public class Project1 {
 		while ((sCurrentLine = br.readLine()) != null) {
 			lines.add(sCurrentLine);
 		}
-		for (int i = 0; i < lines.size() - 3; i += 3) {
+		for (int i = 0; i < lines.size() - 2; i += 3) {
 			ops.add(new VectorOp(lines.get(i), lines.get(i + 1), lines.get(i + 2)));
 		}
-
+		br.close();
 		return ops;
 	}
 
