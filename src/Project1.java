@@ -90,9 +90,8 @@ public class Project1 {
 		SparseVector vector2 = parseSV(sv2);
 		if (op.equals("add"))
 		{
-			vector1.add(vector2);
+			System.out.println(vector1.add(vector2));
 		}
-		
 	}
 
 }
