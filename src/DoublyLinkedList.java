@@ -71,9 +71,9 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 	{
 		Node<AnyType> p = header;
 
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; i < index; i++)
+		{
 			p = p.getNext();
-
 		}
 		return p.getData();
 	}
@@ -81,40 +81,36 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 	public AnyType set(int index, AnyType newValue) // Write code here to
 													// implement this method.
 	{
-		if (index < 0 || index > size()) {
+		if (index < 0 || index > size()) 
+		{
 			String message = String.valueOf(index);
 			throw new IndexOutOfBoundsException(message);
 		}
 
-		// Index is at least 0
-		if (index == 0) {
-			// New element goes at beginning
-			Node<AnyType> p = new Node<AnyType>(newValue, header, trailer); // Old
-																			// first
+		if (index == 0) // Index is at least 0
+		{		
+			Node<AnyType> p = new Node<AnyType>(newValue, header, trailer); 																		
 			header.setNext(p);
 			trailer.setPrev(p);
-		} else {
+		} else 
+		{
 			// pred will point to the predecessor of the new node.
-
 			Node<AnyType> pred = header;
-			for (int k = 1; k <= index - 1; k++) {
+			for (int k = 1; k <= index - 1; k++)
+			{
 				pred = pred.next;
 			}
-
-			// Splice in a node with the new element
-			// We want to go from pred-- succ to
-			// pred--middle--succ
+			
+			// We want to go from pred-- succ to pred--middle--succ			
 			Node<AnyType> succ = pred.next;
 			Node<AnyType> middle = new Node<AnyType>(newValue, succ, pred);
 			pred.next = middle;
 			if (succ == null)
-				trailer = middle;
+				{trailer = middle;}
 			else
-				succ.prev = middle;
+				{succ.prev = middle;}
 		}
-
 		return newValue;
-
 	}
 
 	public boolean add(AnyType newValue) {
@@ -122,33 +118,36 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 		return true;
 	}
 
-	public void add(int index, AnyType newValue) // Write code here to implement
-													// this method.
+	public void add(int index, AnyType newValue) // Write code here to implement this method.												
 	{
-		if (index < 0 || index > size()) {
+		if (index < 0 || index > size()) 
+		{
 			String message = String.valueOf(index);
 			throw new IndexOutOfBoundsException(message);
 		}
 
 		// Index is at least 0
-		if (index == 0) {
-			// New element goes at beginning
+		if (index == 0) 
+		{
+			
 			header = new Node<AnyType>(newValue, null, null);
 			header.setNext(header);
 			header.setPrev(header);
 			trailer = header;
-		} else if (index == 1) {
-			// New element goes at beginning
+		} 
+		else if (index == 1) 
+		{
 			trailer = new Node<AnyType>(newValue, header, header);
 			header.setNext(trailer);
 			header.setPrev(trailer);
-		} else {
+		} 
+		else
+		{
 			Node<AnyType> old = trailer;
 			trailer = new Node<AnyType>(newValue, old, header);
 			old.setNext(trailer);
 		}
 		theSize++;
-
 	}
 
 	public AnyType remove(int index) {
@@ -163,74 +162,87 @@ public class DoublyLinkedList<AnyType> implements List<AnyType> {
 		return (getNode(index, 0, size() - 1));
 	}
 
-	private Node<AnyType> getNode(int index, int lower, int upper) // Write code
-																	// here to
-																	// implement
-																	// this
-																	// method.
+	private Node<AnyType> getNode(int index, int lower, int upper) //Write code here to implement this method.
+																
 	{
-		if (index > upper) {
+		if (index > upper)
+		{
 			return null;
 		}
 		Node<AnyType> currentNode = header;
-		for (int i = lower; i < index; i++) {
+		for (int i = lower; i < index; i++) 
+		{
 			currentNode = currentNode.getNext();
 		}
 		return currentNode;
 	}
 
-	private AnyType remove(Node<AnyType> currNode) // Write code here to
-													// implement this method.
+	private AnyType remove(Node<AnyType> currNode) // Write code here to implement this method.
+													
 	{
 		AnyType retVal = null;
-		if (isEmpty() || currNode == null) {
+		if (isEmpty() || currNode == null) 
+		{
 			return null;
-		} else if (size() == 1){
-			if (currNode.equals(header)) {
+		} else if (size() == 1)
+		{
+			if (currNode.equals(header)) 
+			{
 				retVal = header.getData();
 			}
 			clear();
-		} else if (size() == 2) {
-			if (currNode.equals(header)) {
+		} 
+		else if (size() == 2)
+		{
+			if (currNode.equals(header)) 
+			{
 				retVal = header.getData();
 				header = trailer;
 				trailer.setNext(header);
 				trailer.setPrev(header);
 			}
-			if (currNode.equals(trailer)) {
+			if (currNode.equals(trailer)) 
+			{
 				retVal = trailer.getData();
 				trailer = header;
 				header.setNext(trailer);
 				header.setPrev(trailer);
 			}
-		} else {
-			if (currNode.equals(header)) {
+		}
+		else 
+		{
+			if (currNode.equals(header))
+			{
 				Node<AnyType> old = header;
 				header = header.getNext();
 				trailer.setNext(header);
 				retVal = old.getData();
 			} else
 
-			if (currNode.equals(trailer)) {
+			if (currNode.equals(trailer)) 
+			{
 				Node<AnyType> old = trailer;
 				trailer = trailer.getPrev();
 				header.setPrev(trailer);
 				retVal = old.getData();
-			}else{
+			}
+			else
+			{
 
 			// Locate the node targeted for removal
 			Node<AnyType> target = header;
 			for (int i = 0; i < size(); i++) {
 				target = target.next;
-				if (target != null && target.equals(currNode)) {
+				if (target != null && target.equals(currNode)) 
+				{
 					break;
 				}
 			}
 
 			Node<AnyType> pred = target.prev; // Node before the target
 			Node<AnyType> succ = target.next; // Node after the target
-			// Route forward and back pointers around
-			// the node to be removed
+			
+			// Route forward and back pointers around the node to be removed	
 			pred.next = succ;
 			succ.prev = pred;
 			retVal = target.getData();}

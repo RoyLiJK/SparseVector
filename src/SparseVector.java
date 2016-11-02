@@ -9,12 +9,12 @@ public class SparseVector
 	
 	private TreeMap<Integer, Integer> indexs = new TreeMap<>();
 	
-	public SparseVector()
+	public SparseVector() // constructor
 	{
 		this.vector = new DoublyLinkedList<Double>();
 	}
 	
-	public void add(int index, Double sv)
+	public void add(int index, Double sv) 
 	{
 		if (indexs.get(index)==null)
 		{
@@ -47,9 +47,9 @@ public class SparseVector
 		return indexs.keySet().iterator();
 	}
 	
-	public SparseVector add(SparseVector sv)
+	public SparseVector add(SparseVector sv) // returns a SparseVector which is A+B.
 	{
-		// returns a SparseVector which is A+B.
+		
 		SparseVector result = new SparseVector();
 		
 		Iterator<Integer> itr1 = getIterator();
@@ -73,9 +73,12 @@ public class SparseVector
 			else 
 			{		
 				double sumVal = sum.get(ind)+sv.get(ind);
-				if (sumVal==0){
+				if (sumVal==0)
+				{
 					sum.remove(ind);
-				} else {
+				} 
+				else
+				{
 					sum.put(ind, sumVal);
 				}
 			}
@@ -89,9 +92,9 @@ public class SparseVector
 		return result;
 	}
 	
-	public SparseVector subtract(SparseVector sv)
+	public SparseVector subtract(SparseVector sv)   // returns a SparseVector which is A-B.
 	{
-		// returns a SparseVector which is A-B.
+		
 		SparseVector result = new SparseVector();
 		
 		Iterator<Integer> itr1 = getIterator();
@@ -113,9 +116,12 @@ public class SparseVector
 			else 
 			{
 				double sumVal = sum.get(ind)-sv.get(ind);
-				if (sumVal==0){
+				if (sumVal==0)
+				{
 					sum.remove(ind);
-				} else {
+				} 
+				else 
+				{
 					sum.put(ind, sumVal);
 				}
 			}
@@ -129,10 +135,9 @@ public class SparseVector
 		return result;
 	}
 	
-	 public double dot(SparseVector sv)
+	 public double dot(SparseVector sv)   // returns a double which is A∙B 
 	 {
-		 // public returns a double which is A∙B 
-		
+
 		Iterator<Integer> itr1 = getIterator();
 		Iterator<Integer> itr2 = sv.getIterator();
 		
@@ -140,9 +145,7 @@ public class SparseVector
 		while (itr1.hasNext())
 		{
 			int ind = itr1.next();
-			
-				sum.put(ind, get(ind));
-			
+			sum.put(ind, get(ind));			
 		}
 		while (itr2.hasNext())
 		{
@@ -166,12 +169,11 @@ public class SparseVector
 		}
 		
 		return  result;
-
-		 
+	 
 	 }
 
 	
-	public String toString() 
+	public String toString() //format the vector to be printed
 	{
 		String retVal = "(";
 		if (vector == null)
